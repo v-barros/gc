@@ -8,16 +8,29 @@
 #include <stdio.h>
 #include "vm.h"
 
+ void mark(object*obj){
+    obj->marked=1;
+ }
 
 object * newObject(int n){
 	object * newobj = (object*) malloc(sizeof(object));
 
 	if(newobj!=NULL){
 		newobj->value=n;
+        newobj->marked=0;
 		newobj->next=NULL;
 		newobj->previous=NULL;
 	}
 	return newobj;
+}
+
+void markAll(VM* vm)
+{
+    object * aux=vm->head;
+     while(aux!=NULL){
+        mark(aux);
+		aux = aux->next;
+     }
 }
 
 VM * newVM(){

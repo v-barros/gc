@@ -8,6 +8,7 @@
 #define VM_H_
 
 struct object{
+	unsigned char marked;
 	int value;
 	struct object * next;
 	struct object * previous;
@@ -23,14 +24,16 @@ typedef struct VM VM;
 
 VM * newVM();
 
-int pop(VM *);
+int pop(VM *vm);
 
-int push(VM *, int);
+int push(VM *vm, int value);
 
-int isEmpty(VM *);
+int isEmpty(VM *vm);
 
-void printMem(VM *);
+void printMem(VM *vm);
 
-int peek(VM *);
+int peek(VM *vm);
+
+void markAll(VM* vm);
 
 #endif /*VM_H_*/
