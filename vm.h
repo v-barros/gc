@@ -4,6 +4,8 @@
  *  Created on: 2023-08-06
  *      Author: @v-barros
  */
+#ifndef VM_H_
+#define VM_H_
 
 struct object{
 	int value;
@@ -19,15 +21,16 @@ struct VM{
 };
 typedef struct VM VM;
 
-VM * newStack();
+VM * newVM();
 
-void * pop(VM *);
+int pop(VM *);
 
-int push(VM *, void *);
+int push(VM *, int);
 
 int isEmpty(VM *);
 
 void printMem(VM *);
 
-void * peek(VM *);
+int peek(VM *);
 
+#endif /*VM_H_*/
